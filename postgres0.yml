@@ -1,0 +1,30 @@
+name: pg1
+scope: batman
+namespace: /service/
+
+restapi:
+  listen: 127.0.0.1:8008
+  connect_address: 127.0.0.1:8008
+
+etcd3:
+  hosts:
+    - 127.0.0.1:2379
+
+bootstrap:
+  initdb:
+    - encoding: UTF8
+
+postgresql:
+  data_dir: /tmp/pgdata-pg1
+  bin_dir: /usr/local/bin
+  connect_address: 127.0.0.1:5432
+  authentication:
+    superuser:
+      username: postgres
+    replication:
+      username: replicator
+      password: replicator
+  parameters:
+    port: 5432
+    max_connections: 100
+    shared_buffers: 128MB
